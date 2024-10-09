@@ -23,7 +23,7 @@ const Dashboard = () => {
       {/* HEADER */}
       <div className="mb-5 flex flex-row flex-wrap items-center justify-center gap-5">
         <h1 className="text-center text-2xl md:text-3xl lg:text-4xl">{t('welcome')}</h1>
-        <Image
+        {/* <Image
           src="/identity/logo-title-only.png"
           alt="Matcha"
           width={0}
@@ -33,7 +33,8 @@ const Dashboard = () => {
           placeholder="blur"
           blurDataURL={'/identity/logo-transparent.png'}
           priority
-        />
+        /> */}
+        <div className="text-center text-2xl md:text-3xl lg:text-4xl">{user.firstname}!</div>
       </div>
 
       <div className={clsx('flex w-[100%] flex-col content-center items-center gap-5')}>

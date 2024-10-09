@@ -1,5 +1,5 @@
 {
-  "welcome": "Bienvenue sur",
+  "welcome": "Bienvenue",
   "dashboard": "Tableau de bord",
   "male": "Homme",
   "female": "Femme",
@@ -10,8 +10,8 @@
   "age": "Âge",
   "sex": "Sexe",
   "sexual-orientation": "Orientation sexuelle",
-  "sexual-preferences": "Sex-préférences",
-  "need-help": "Besoin d'aide? Contactez le support",
+  "sexual-preferences": "Préférences sexuelles",
+  "need-help": "Besoin d'aide?",
   "contact-support": "Contactez le support",
   "error": "Erreur",
   "success": "Succès",

@@ -94,6 +94,30 @@ const LocaleSwitcher = () => {
           />
         </div>
       </div>
+
+      <div
+        className={clsx(
+          `flex cursor-pointer items-center justify-center rounded-full border-[1px] px-[2px] py-[2px] smooth42transition`,
+          `hover:border-c42orange`,
+          localeActive === 'es' ? 'border-[1px] border-foreground' : 'bg-card'
+        )}
+        title="Español"
+        onClick={() => handleLocaleChange('es')}
+      >
+        <div className="overflow-hidden rounded-full bg-transparent">
+          <Image
+            src={`/country-flags/es.svg`}
+            alt="national-flag"
+            width={0}
+            height={0}
+            className={clsx(
+              'h-5 w-5 object-cover',
+              localeActive === 'es' ? 'opacity-100' : 'opacity-70',
+              `hover:opacity-100`
+            )}
+          />
+        </div>
+      </div>
     </div>
   );
 };

@@ -166,7 +166,7 @@ const Login = () => {
             priority
           />
           <div className="absolute bottom-0 z-10 bg-card/85 p-4 text-foreground">
-            <h2 className="mb-2 text-4xl">Make love, not war</h2>
+            <h2 className="mb-2 text-4xl">Share the love</h2>
             <p className="text-sm">
               Matcha Dating App{'. '}
               {/*{t(`service-provided`)}{' '}

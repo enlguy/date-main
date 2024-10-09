@@ -6,7 +6,7 @@ import { JWTPayload, jwtVerify } from 'jose';
 const JWT_SECRET = process.env.JWT_SECRET || 'secret-key';
 
 // List of supported locales and public pages
-const locales = ['en', 'fr', 'ru'];
+const locales = ['en', 'fr', 'ru', 'es'];
 const publicPages = ['/', '/login', '/email-confirmation', '/password-reset'];
 
 // Middleware for internationalization (i18n)
