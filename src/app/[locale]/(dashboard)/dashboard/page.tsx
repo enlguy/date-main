@@ -78,7 +78,7 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* POWERED BY */}
+        {/* POWERED BY 
         <div
           id="powered-by"
           className={clsx(
@@ -297,7 +297,7 @@ const Dashboard = () => {
               <p>Google Maps API</p>
             </div>
           </div>
-        </div>
+        </div>*/}
       </div>
     </div>
   );
