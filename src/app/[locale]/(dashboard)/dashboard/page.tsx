@@ -10,6 +10,7 @@ import { Microscope, ScanSearch, UserRoundCog } from 'lucide-react';
 import DashboardSkeleton from '@/components/ui/skeletons/dashboard-skeleton';
 import { useRouter } from '@/navigation';
 import useUserStore from '@/stores/user';
+import SmartSuggestions from '../search/smart-suggestions/page';
 
 const Dashboard = () => {
   const t = useTranslations();
@@ -21,8 +22,8 @@ const Dashboard = () => {
   ) : (
     <div>
       {/* HEADER */}
-      <div className="mb-5 flex flex-row flex-wrap items-center justify-center gap-5">
-        <h1 className="text-center text-2xl md:text-3xl lg:text-4xl">{t('welcome')}</h1>
+      <div className="mb-10 flex flex-row flex-wrap items-center justify-center gap-5">
+        <h1 className="text-center text-2xl md:text-3xl lg:text-5xl">{t('welcome')}</h1>
         {/* <Image
           src="/identity/logo-title-only.png"
           alt="Matcha"
@@ -34,11 +35,11 @@ const Dashboard = () => {
           blurDataURL={'/identity/logo-transparent.png'}
           priority
         /> */}
-        <div className="text-center text-2xl md:text-3xl lg:text-4xl">{user.firstname}!</div>
+        <div className="text-center text-2xl md:text-3xl lg:text-5xl">{user.firstname}!</div>
       </div>
 
       <div className={clsx('flex w-[100%] flex-col content-center items-center gap-5')}>
-        {/* NAVIGATION BUTTONS */}
+        {/* NAVIGATION BUTTONS 
         <div
           id="navigation-buttons"
           className={clsx(
@@ -48,7 +49,8 @@ const Dashboard = () => {
           <div
             className="flex max-w-72 cursor-pointer flex-col items-center justify-center gap-5 rounded-2xl border bg-card p-5 text-center transition-all duration-300 ease-in-out hover:border-c42green"
             onClick={() => router.push('/profile')}
-          >
+          > 
+           
             <p>{t('customize-profile')}</p>
             <UserRoundCog
               size={70}
@@ -77,7 +79,9 @@ const Dashboard = () => {
               className="transition-all duration-300 ease-in-out hover:scale-125"
             />
           </div>
-        </div>
+        </div> */}
+
+        <SmartSuggestions />
 
         {/* POWERED BY 
         <div

@@ -1,4 +1,4 @@
-require('dotenv').config({ path: './.env.local' });
+const dotenv = require('dotenv').config({ path: '../.env.local' });
 const bcrypt = require('bcrypt');
 const { db } = require('@vercel/postgres');
 const getUnconfirmedUsers = require('./fake-users-list-unconfirmed');
@@ -8,9 +8,11 @@ const getConfirmedUsersFemale = require('./fake-users-list-confirmed-female');
 // Function to insert users into the 'users' table
 async function insertUsers() {
   // Check if process.env.DEFAULT_PASS is defined
-  if (!process.env.DEFAULT_PASS) {
+  {
+    /* if (process.env.DEFAULT_PASS) {
     console.error('Environment variable DEFAULT_PASS is not defined.');
     process.exit(1);
+  } */
   }
 
   const client = await db.connect();
