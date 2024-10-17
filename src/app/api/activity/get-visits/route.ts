@@ -35,7 +35,7 @@ export async function POST(req: Request) {
         SELECT 
           users.id, users.firstname, users.lastname, users.nickname, users.birthdate, users.sex, 
           users.biography, users.tags, users.last_action, users.latitude, users.longitude, 
-          users.address, users.online, users.raiting, users.sex_preferences, users.confirmed, users.complete
+          users.address, users.online, users.raiting, users.sex_preferences, users.photos, sers.confirmed, users.complete
         FROM visits
         JOIN users ON visits.visited_user_id = users.id
         WHERE visits.visitor_id = $1
@@ -49,7 +49,7 @@ export async function POST(req: Request) {
       query = `
         SELECT 
           users.id, users.firstname, users.lastname, users.nickname, users.birthdate, users.sex, 
-          users.biography, users.tags, users.last_action, users.latitude, users.longitude, 
+          users.biography, users.tags, users.last_action, users.latitude, users.longitude, users.photos,
           users.address, users.online, users.raiting, users.sex_preferences, users.confirmed, users.complete
         FROM visits
         JOIN users ON visits.visitor_id = users.id
@@ -79,6 +79,7 @@ export async function POST(req: Request) {
         age, // Calculated age from birthdate
         sex: visit.sex,
         biography: visit.biography,
+        photos: visit.photos,
         tags: visit.tags,
         tags_in_common: tagsInCommon, // Calculated tags in common with the current user
         last_action: visit.last_action,

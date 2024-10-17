@@ -29,7 +29,7 @@ export async function POST(req: Request) {
     const query = `
       SELECT 
         users.id, users.firstname, users.lastname, users.nickname, users.birthdate, users.sex, 
-        users.biography, users.tags, users.last_action, users.latitude, users.longitude, 
+        users.biography, users.tags, users.last_action, users.latitude, users.longitude, users.photos,
         users.address, users.online, users.raiting, users.sex_preferences, users.confirmed, users.complete
       FROM matches
       JOIN users ON (matches.user_one_id = users.id OR matches.user_two_id = users.id)
@@ -64,6 +64,7 @@ export async function POST(req: Request) {
         online: match.online,
         raiting: match.raiting,
         sex_preferences: match.sex_preferences,
+        photos: match.photos,
         confirmed: match.confirmed,
         complete: match.complete,
       };

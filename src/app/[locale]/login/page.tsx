@@ -146,25 +146,19 @@ const Login = () => {
   };
 
   return (
-    <div className={clsx('flex h-screen w-screen flex-row items-center justify-center bg-card')}>
-      <div
-        className={clsx(
-          'hidden h-screen flex-row items-center justify-center bg-card',
-          'md:flex md:w-2/3',
-          'lg:flex lg:w-3/4'
-        )}
-      >
+    <div className={clsx('flex h-screen w-screen items-center justify-center bg-card')}>
+      <div className={clsx('hidden h-screen items-center justify-center bg-card')}>
+        <Image
+          src="/identity/background.jpg"
+          alt="hearts"
+          fill
+          placeholder="blur"
+          blurDataURL="/identity/background.jpg"
+          className="z-0"
+          sizes={'100vw'}
+          priority
+        />
         <div className="relative h-full w-full bg-card">
-          <Image
-            src="/identity/background.jpg"
-            alt="hearts"
-            fill
-            placeholder="blur"
-            blurDataURL="/identity/background.jpg"
-            className="z-0"
-            sizes={'100vw'}
-            priority
-          />
           <div className="absolute bottom-0 z-10 bg-card/85 p-4 text-foreground">
             <h2 className="mb-2 text-4xl">Share the love</h2>
             <p className="text-sm">
@@ -186,7 +180,7 @@ const Login = () => {
       </div>
       <div
         className={clsx(
-          'm-auto flex h-full w-full flex-col overflow-y-scroll pl-5 pr-5',
+          'm-auto flex h-full w-full flex-col overflow-y-scroll bg-cyan-600 pl-5 pr-5',
           'md:w-1/3',
           'lg:w-1/4'
         )}

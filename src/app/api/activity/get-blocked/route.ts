@@ -28,7 +28,7 @@ export async function POST(req: Request) {
     const query = `
       SELECT 
         users.id, users.firstname, users.lastname, users.nickname, users.birthdate, users.sex, 
-        users.biography, users.tags, users.last_action, users.latitude, users.longitude, 
+        users.biography, users.tags, users.last_action, users.latitude, users.longitude, users.photos,
         users.address, users.online, users.raiting, users.sex_preferences, users.confirmed, users.complete, users.photos
       FROM blocked_users
       JOIN users ON blocked_users.blocked_user_id = users.id
@@ -63,6 +63,7 @@ export async function POST(req: Request) {
         latitude: blockedUser.latitude,
         longitude: blockedUser.longitude,
         address: blockedUser.address,
+        photos: blockedUser.photos,
         online: blockedUser.online,
         raiting: blockedUser.raiting,
         sex_preferences: blockedUser.sex_preferences,

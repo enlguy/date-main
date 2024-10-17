@@ -11,6 +11,7 @@ import EmblaCarousel from '@/components/carousel/embla-carousel';
 import FilledOrNot from '@/components/ui/filled-or-not';
 import { TDateProfile } from '@/types/date-profile';
 import { TUser } from '@/types/user';
+import useUserStore from '@/stores/user';
 
 const EmptyPhoto = () => {
   return (
@@ -40,16 +41,20 @@ const PhotoGalleryWrapper = ({
 }) => {
   const t = useTranslations();
   const [allPhotosFilled, setAllPhotosFilled] = useState<boolean>(
-    profile?.photos?.length! >= 1 && profile?.photos?.length! < 5 ? false : true
+    profile?.photos?.length! >= 0 && profile?.photos?.length! < 6 ? false : true
   );
 
   const OPTIONS: EmblaOptionsType = { loop: true };
+  const { user, globalLoading } = useUserStore((state) => ({
+    user: state.user,
+    globalLoading: state.globalLoading,
+  }));
   const SLIDES = [
     <div
       key="slide1"
       className="m-3 mx-10 flex h-[335px] w-[335px] justify-center self-center smooth42transition sm:w-[400px] md:h-[400px]"
     >
-      {profile?.photos?.[0] ? (
+      {user?.photos?.[0] ? (
         <Image
           src={`${profile?.photos?.[0]}`}
           alt="photo1"

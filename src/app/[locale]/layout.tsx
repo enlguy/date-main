@@ -20,8 +20,8 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: 'Matcha',
-  description: 'Because, love too can be industrialized',
+  title: 'Supaluva',
+  description: "Get yo' luv on",
   icons: {
     icon: ['/favicon.ico'],
     apple: ['/apple-touch-icon.png'],

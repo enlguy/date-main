@@ -76,7 +76,7 @@ export async function POST(request: Request) {
     // Query to select matching users based on tags intersection and rating. EXCLUDE BLOCKED USERS!
     const queryString = `
       SELECT 
-        id, firstname, lastname, nickname, birthdate, sex, sex_preferences, latitude, longitude, tags, raiting, address, biography, last_action, online, confirmed, complete
+        id, firstname, lastname, nickname, birthdate, sex, sex_preferences, latitude, longitude, photos, tags, raiting, address, biography, last_action, online, confirmed, complete
       FROM users
       WHERE 
         id != $1

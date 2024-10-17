@@ -2,7 +2,16 @@ import { NextResponse } from 'next/server';
 
 import { db } from '@vercel/postgres';
 
+import { createClient } from '@supabase/supabase-js';
+
 import { calculateAge } from '@/utils/format-string';
+
+require('dotenv').config();
+
+const supabase = createClient(
+  process.env.SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
 
 export async function POST(req: Request) {
   const client = await db.connect();
@@ -33,7 +42,7 @@ export async function POST(req: Request) {
       // todo add photos (delete the line after)
       query = `
         SELECT 
-          users.id, users.firstname, users.lastname, users.nickname, users.birthdate, users.sex, 
+          users.id, users.firstname, users.lastname, users.nickname, users.birthdate, users.sex, users.photos,
           users.biography, users.tags, users.last_action, users.latitude, users.longitude, 
           users.address, users.online, users.raiting, users.sex_preferences, users.confirmed, users.complete
         FROM likes
@@ -49,7 +58,7 @@ export async function POST(req: Request) {
       query = `
         SELECT 
           users.id, users.firstname, users.lastname, users.nickname, users.birthdate, users.sex, 
-          users.biography, users.tags, users.last_action, users.latitude, users.longitude, 
+          users.biography, users.tags, users.last_action, users.latitude, users.longitude, users.photos,
           users.address, users.online, users.raiting, users.sex_preferences, users.confirmed, users.complete
         FROM likes
         JOIN users ON likes.liker_id = users.id
@@ -86,6 +95,7 @@ export async function POST(req: Request) {
         longitude: like.longitude,
         address: like.address,
         online: like.online,
+        photos: like.photos,
         raiting: like.raiting,
         sex_preferences: like.sex_preferences,
         confirmed: like.confirmed,

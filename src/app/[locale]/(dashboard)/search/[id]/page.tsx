@@ -8,28 +8,24 @@ import { Frown } from 'lucide-react';
 
 import ProfilePageSkeleton from '@/components/ui/skeletons/profile-page-skeleton';
 import DateProfileWrapper from '@/components/wrappers/date-profile-wrapper';
-import useSearchStore from '@/stores/search';
 import useUserStore from '@/stores/user';
+import { TDateProfile } from '@/types/date-profile';
 
 const DateProfilePage = () => {
   const t = useTranslations();
   const router = useRouter();
   const { id: profileToFindId } = useParams(); // Grab the id from the dynamic route
   const { user, setUser, globalLoading } = useUserStore();
-  const { getSmartSuggestionById, getAdvancedSuggestionById, addAdvancedSuggestion } =
-    useSearchStore();
-  const [dateProfile, setDateProfile] = useState(
-    getAdvancedSuggestionById(profileToFindId as string) ??
-      getSmartSuggestionById(profileToFindId as string) ??
-      null
-  );
+  const [dateProfile, setDateProfile] = useState<TDateProfile | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
+  // Connection-status states
   const [isMatch, setIsMatch] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
+  const [isLikedBy, setIsLikedBy] = useState(false);
   const [isBlocked, setIsBlocked] = useState(false);
-  const [isBlockedBy, setIsBlockedBy] = useState(null);
+  const [isBlockedBy, setIsBlockedBy] = useState<boolean | null>(null);
 
   useEffect(() => {
     // Redirect to /profile if the user tries to visit their own profile
@@ -67,8 +63,7 @@ const DateProfilePage = () => {
             setError(result.message);
             setUser({ ...user, ...result.user });
           } else {
-            addAdvancedSuggestion(result.matchingUserProfile);
-            setDateProfile(result.matchingUserProfile); // add a newly fetched profile to advancedSuggestions
+            setDateProfile(result.matchingUserProfile);
             setUser({ ...user, ...result.user });
           }
         } else {
@@ -86,7 +81,7 @@ const DateProfilePage = () => {
 
   useEffect(() => {
     // Log the visit once the user and dateProfile are available
-    if (user && dateProfile && user.id !== dateProfile.id) {
+    if (user && dateProfile && user.id !== dateProfile?.id) {
       const logVisit = async () => {
         try {
           await fetch('/api/interactions/visit', {
@@ -106,40 +101,39 @@ const DateProfilePage = () => {
 
       logVisit();
     }
-  }, [user, dateProfile]); // Keep user and dateProfile in the dependency array
+  }, [dateProfile?.id]);
 
+  // Polling for relationship status changes (with immediate first poll)
   useEffect(() => {
-    setLoading(true);
-    const checkProfileStatus = async () => {
+    const pollStatus = async () => {
       if (!user || !dateProfile) return;
 
       try {
         const response = await fetch('/api/activity/check-profile', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            userId: user.id,
-            profileToCheckId: dateProfile.id,
-          }),
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ userId: user.id, profileToCheckId: dateProfile.id }),
         });
 
         const result = await response.json();
         if (response.ok) {
           setIsLiked(result.isLiked);
+          setIsLikedBy(result.isLikedBy);
           setIsMatch(result.isMatch);
           setIsBlocked(result.isBlocked);
           setIsBlockedBy(result.isBlockedBy);
         }
       } catch (error) {
         console.error('Error checking profile status:', error);
-      } finally {
-        setLoading(false);
       }
     };
 
-    checkProfileStatus();
+    // Trigger the first poll immediately
+    pollStatus();
+
+    // Then start polling every 7 seconds
+    const interval = setInterval(pollStatus, 7000);
+    return () => clearInterval(interval);
   }, [user, dateProfile]);
 
   useEffect(() => {
@@ -164,6 +158,7 @@ const DateProfilePage = () => {
       setDateProfile={setDateProfile}
       isMatch={isMatch}
       isLiked={isLiked}
+      //isLikedBy={isLikedBy}
       isBlocked={isBlocked}
     />
   );

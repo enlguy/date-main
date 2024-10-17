@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-
+import supabase from '../../../../utils/supabase';
 import { db } from '@vercel/postgres';
 
 export async function POST(req: Request) {

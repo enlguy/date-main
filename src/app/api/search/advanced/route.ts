@@ -48,7 +48,7 @@ export async function POST(request: Request) {
     // todo add "photos" to SELECT on release to fetch photos
     // Prepare the SQL query (EXCLUDE BLOCKED USERS!)
     const queryString = `
-      SELECT id, firstname, lastname, nickname, birthdate, sex, sex_preferences, latitude, longitude, tags, raiting, address, biography, last_action, online, confirmed, complete
+      SELECT id, firstname, lastname, nickname, birthdate, sex, photos, sex_preferences, latitude, longitude, tags, raiting, address, biography, last_action, online, confirmed, complete
       FROM users
       WHERE 
         id != $1

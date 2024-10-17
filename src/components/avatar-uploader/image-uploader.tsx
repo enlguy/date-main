@@ -42,7 +42,7 @@ const ImageUploader = ({
       setIsCompressing(true);
       setSuccessMessage(t('image-processing'));
       try {
-        const compressedImage = await compressFile(file); // Compress the image
+        const compressedImage = await compressFile(file); // Compress the image - this line may be wrong now for getting images to display
         if (compressedImage) {
           const response = await fetch(`/api/avatar/upload?filename=${compressedImage.name}`, {
             method: 'POST',
