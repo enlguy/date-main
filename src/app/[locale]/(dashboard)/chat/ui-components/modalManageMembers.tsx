@@ -1,9 +1,10 @@
-import Image from 'next/image';
 import { useState } from 'react';
+import Image from 'next/image';
+
 import { roboto } from '../fonts';
+import { ChatEventTypes } from '../types';
 import Avatar from './avatar';
 import ManagedMember from './managedMember';
-import { ChatEventTypes } from '../types';
 
 export default function ModalManageMembers({
   activeChannelUsers,

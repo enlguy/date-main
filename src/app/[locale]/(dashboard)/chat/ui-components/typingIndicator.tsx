@@ -1,5 +1,5 @@
-import Avatar from './avatar';
 import { PresenceIcon } from '../types';
+import Avatar from './avatar';
 
 export default function TypingIndicator({ typers, users }) {
   return (

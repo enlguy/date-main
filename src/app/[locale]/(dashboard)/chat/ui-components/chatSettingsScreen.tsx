@@ -1,10 +1,12 @@
+import { useEffect,useState } from 'react';
 import Image from 'next/image';
-import Avatar from './avatar';
-import { roboto } from '../fonts';
+
 import { Membership, User } from '@pubnub/chat';
-import { useState, useEffect } from 'react';
-import { ToastType } from '../types';
 import { actionCompleted } from 'pubnub-demo-integration';
+
+import { roboto } from '../fonts';
+import { ToastType } from '../types';
+import Avatar from './avatar';
 
 export default function ChatSettingsScreen({
   chatSettingsScreenVisible,

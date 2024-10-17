@@ -1,16 +1,18 @@
-import Message from './message';
-import { roboto } from '../fonts';
+import { useCallback, useEffect, useRef,useState } from 'react';
 import Image from 'next/image';
-import MessageInput from './messageInput';
-import { useState, useEffect, useCallback, useRef } from 'react';
+
 import {
   Channel,
-  User,
-  Message as pnMessage,
   Membership,
+  Message as pnMessage,
   MixedTextTypedElement,
   TimetokenUtils,
+  User,
 } from '@pubnub/chat';
+
+import { roboto } from '../fonts';
+import Message from './message';
+import MessageInput from './messageInput';
 
 export default function MessageListThread({
   showThread,

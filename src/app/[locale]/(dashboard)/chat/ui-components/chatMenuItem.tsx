@@ -1,8 +1,9 @@
-import Avatar from './avatar'
-import Image from 'next/image'
-import UnreadIndicator from './unreadIndicator'
 import { useState } from 'react'
+import Image from 'next/image'
+
+import Avatar from './avatar'
 import ToolTip from './toolTip'
+import UnreadIndicator from './unreadIndicator'
 
 export default function ChatMenuItem ({
   avatarUrl,

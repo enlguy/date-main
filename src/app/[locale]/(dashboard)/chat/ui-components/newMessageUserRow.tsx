@@ -1,7 +1,9 @@
-import Avatar from './avatar';
 import Image from 'next/image';
-import { roboto } from '../fonts';
+
 import { User } from '@pubnub/chat';
+
+import { roboto } from '../fonts';
+import Avatar from './avatar';
 
 export default function NewMessageUserRow({ user, present, clickAction }) {
   return (

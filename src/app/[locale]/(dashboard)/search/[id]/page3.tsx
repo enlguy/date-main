@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 
 import clsx from 'clsx';
@@ -18,10 +19,9 @@ import PhotoGalleryWrapper from '@/components/wrappers/photo-gallery-wrapper';
 import RaitingWrapper from '@/components/wrappers/raiting-wrapper';
 import SexPreferenceWrapper from '@/components/wrappers/sex-preference-wrapper';
 import StatusWrapper from '@/components/wrappers/status-wrapper';
+import useSearchStore from '@/stores/search';
 import useUserStore from '@/stores/user';
 import { calculateAge } from '@/utils/format-string';
-import { useParams } from 'next/navigation';
-import useSearchStore from '@/stores/search';
 
 const ProfilePage = () => {
   const t = useTranslations();

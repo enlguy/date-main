@@ -1,8 +1,9 @@
 // @ts-nocheck
 
-import Avatar from './avatar';
 import Image from 'next/image';
+
 import { roboto } from '../fonts';
+import Avatar from './avatar';
 
 export default function MentionSuggestions({
   suggestedUsers,

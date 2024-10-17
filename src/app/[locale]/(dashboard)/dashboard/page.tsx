@@ -7,10 +7,11 @@ import { useTranslations } from 'next-intl';
 import clsx from 'clsx';
 import { Microscope, ScanSearch, UserRoundCog } from 'lucide-react';
 
+import SmartSuggestions from '../search/smart-suggestions/page';
+
 import DashboardSkeleton from '@/components/ui/skeletons/dashboard-skeleton';
 import { useRouter } from '@/navigation';
 import useUserStore from '@/stores/user';
-import SmartSuggestions from '../search/smart-suggestions/page';
 
 const Dashboard = () => {
   const t = useTranslations();

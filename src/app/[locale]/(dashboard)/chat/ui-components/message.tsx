@@ -1,16 +1,18 @@
 // @ts-nocheck
 
-import Avatar from './avatar';
+import { useCallback,useEffect, useState } from 'react';
 import Image from 'next/image';
+
+import { Channel, MixedTextTypedElement,TimetokenUtils } from '@pubnub/chat';
+
 import { roboto } from '../fonts';
-import { useState, useEffect, useCallback } from 'react';
+import { MessageActionsTypes, PresenceIcon, ToastType } from '../types';
+import Avatar from './avatar';
 import MessageActions from './messageActions';
+import MessageReaction from './messageReaction';
 import PinnedMessagePill from './pinnedMessagePill';
 import QuotedMessage from './quotedMessage';
-import MessageReaction from './messageReaction';
-import { MessageActionsTypes, PresenceIcon, ToastType } from '../types';
 import ToolTip from './toolTip';
-import { Channel, TimetokenUtils, MixedTextTypedElement } from '@pubnub/chat';
 
 export default function Message({
   received,

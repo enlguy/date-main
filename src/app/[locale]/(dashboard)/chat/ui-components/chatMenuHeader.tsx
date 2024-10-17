@@ -1,6 +1,7 @@
-import Image from 'next/image';
-import { roboto } from '../fonts';
 import { useState } from 'react';
+import Image from 'next/image';
+
+import { roboto } from '../fonts';
 import { ChatHeaderActionIcon } from '../types';
 
 export default function ChatMenuHeader({

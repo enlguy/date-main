@@ -44,7 +44,7 @@ export enum ChatEventTypes {
 
 //  Credit: https://gist.github.com/gabrielmlinassi/234519eacaf73f75812b48ea3e94ee6e
 //  Used to only minimze the chat selection pane if we are running on a small screen
-import { useState, useEffect, useLayoutEffect } from "react";
+import { useEffect, useLayoutEffect,useState } from "react";
 
 export function useMediaQuery(query: string) {
   const [matches, setMatches] = useState(false);

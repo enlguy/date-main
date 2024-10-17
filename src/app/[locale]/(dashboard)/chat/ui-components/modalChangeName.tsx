@@ -1,5 +1,6 @@
+import { useEffect,useState } from 'react';
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
+
 import { roboto } from '../fonts';
 import { ChatNameModals, ToastType } from '../types';
 

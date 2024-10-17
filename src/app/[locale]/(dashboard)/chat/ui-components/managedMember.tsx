@@ -1,7 +1,8 @@
 import Image from 'next/image';
+
 import { roboto } from '../fonts';
-import Avatar from './avatar';
 import { PresenceIcon } from '../types';
+import Avatar from './avatar';
 
 export default function ManagedMember({ user, name, lastElement = false }) {
   return (

@@ -9,9 +9,9 @@ import { PenLine } from 'lucide-react';
 
 import EmblaCarousel from '@/components/carousel/embla-carousel';
 import FilledOrNot from '@/components/ui/filled-or-not';
+import useUserStore from '@/stores/user';
 import { TDateProfile } from '@/types/date-profile';
 import { TUser } from '@/types/user';
-import useUserStore from '@/stores/user';
 
 const EmptyPhoto = () => {
   return (

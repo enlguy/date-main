@@ -1,8 +1,7 @@
 import { NextResponse } from 'next/server';
 
-import { db } from '@vercel/postgres';
-
 import { createClient } from '@supabase/supabase-js';
+import { db } from '@vercel/postgres';
 
 import { calculateAge } from '@/utils/format-string';
 

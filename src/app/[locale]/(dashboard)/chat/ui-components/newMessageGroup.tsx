@@ -1,13 +1,15 @@
 import { useState } from 'react';
-import { roboto } from '../fonts';
+import Image from 'next/image';
+
 import { Chat, User } from '@pubnub/chat';
+import { actionCompleted } from 'pubnub-demo-integration';
+
+import { roboto } from '../fonts';
+import { ChatEventTypes, PresenceIcon,ToastType } from '../types';
 import Avatar from './avatar';
 import Message from './message';
-import Image from 'next/image';
-import NewMessageUserRow from './newMessageUserRow';
 import NewMessageUserPill from './newMessageUserPill';
-import { ChatEventTypes, ToastType, PresenceIcon } from '../types';
-import { actionCompleted } from 'pubnub-demo-integration';
+import NewMessageUserRow from './newMessageUserRow';
 
 export default function NewMessageGroup({
   chat,

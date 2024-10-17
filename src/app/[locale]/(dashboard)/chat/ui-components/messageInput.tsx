@@ -1,14 +1,16 @@
 // @ts-nocheck
 
+import { useEffect, useRef,useState } from 'react';
 import Image from 'next/image';
-import Avatar from './avatar';
-import UnreadIndicator from './unreadIndicator';
-import { MessageDraft, User, Channel } from '@pubnub/chat';
-import QuotedMessage from './quotedMessage';
-import MentionSuggestions from './mentionSuggestions';
-import { useState, useEffect, useRef } from 'react';
-import { ToastType } from '../types';
+
+import { Channel,MessageDraft, User } from '@pubnub/chat';
 import { actionCompleted } from 'pubnub-demo-integration';
+
+import { ToastType } from '../types';
+import Avatar from './avatar';
+import MentionSuggestions from './mentionSuggestions';
+import QuotedMessage from './quotedMessage';
+import UnreadIndicator from './unreadIndicator';
 
 export default function MessageInput({
   activeChannel,

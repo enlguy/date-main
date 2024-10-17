@@ -1,21 +1,22 @@
 // @ts-nocheck
 
+import { useCallback, useEffect, useRef,useState } from 'react';
+import Image from 'next/image';
+
+import {
+  Channel,
+  Membership,
+  Message as pnMessage,
+  MixedTextTypedElement,
+  TimetokenUtils,
+  User,
+} from '@pubnub/chat';
+
 import { roboto } from '../fonts';
+import { PresenceIcon } from '../types';
 import Avatar from './avatar';
 import Message from './message';
 import UnreadIndicator from './unreadIndicator';
-import Image from 'next/image';
-import { PresenceIcon } from '../types';
-
-import { useState, useEffect, useCallback, useRef } from 'react';
-import {
-  Channel,
-  User,
-  Message as pnMessage,
-  Membership,
-  MixedTextTypedElement,
-  TimetokenUtils,
-} from '@pubnub/chat';
 
 export default function MessageList({
   activeChannel,

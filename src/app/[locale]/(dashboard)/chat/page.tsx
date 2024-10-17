@@ -2,44 +2,47 @@
 
 'use client';
 
+import { useCallback, useContext, useEffect, useRef,useState } from 'react';
+import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
-import { useState, useEffect, useContext, useCallback, useRef } from 'react';
-import { loadEnvConfig } from '@next/env';
-import { Channel, Chat, Membership, User, ThreadChannel, Message as pnMessage } from '@pubnub/chat';
-import Image from 'next/image';
-import Header from './ui-components/header';
 import { usePathname } from 'next/navigation';
-import ChatSelectionMenu from './ui-components/chatSelectionMenu';
-import Avatar from './ui-components/avatar';
-import UnreadIndicator from './ui-components/unreadIndicator';
-import Message from './ui-components/message';
-import MessageList from './ui-components/messageList';
-import MessageListThread from './ui-components/messageListThread';
-import MessageInput from './ui-components/messageInput';
-import NewMessageGroup from './ui-components/newMessageGroup';
-import UserMessage from './ui-components/userMessage';
-import RoomSelector from './ui-components/roomSelector';
-import ProfileScreen from './ui-components/profileScreen';
-import TypingIndicator from './ui-components/typingIndicator';
-import ChatSettingsScreen from './ui-components/chatSettingsScreen';
-import ModalChangeName from './ui-components/modalChangeName';
-import ModalManageMembers from './ui-components/modalManageMembers';
-import searchImg from '@/public/icons/search.svg';
+
 import data from '@emoji-mart/data';
 import Picker from '@emoji-mart/react';
+import { loadEnvConfig } from '@next/env';
+import { Channel, Chat, Membership, Message as pnMessage,ThreadChannel, User } from '@pubnub/chat';
+import { actionCompleted } from 'pubnub-demo-integration';
+
 import { testData } from './data/user-data';
+import { getAuthKey } from './getAuthKey';
 import {
+  ChatEventTypes,
+  ChatHeaderActionIcon,
   ChatNameModals,
   MessageActionsTypes,
-  ChatHeaderActionIcon,
-  ToastType,
-  ChatEventTypes,
-  UnreadMessagesOnChannel,
   PresenceIcon,
+  ToastType,
+  UnreadMessagesOnChannel,
 } from './types';
-import { getAuthKey } from './getAuthKey';
-import { actionCompleted } from 'pubnub-demo-integration';
+import Avatar from './ui-components/avatar';
+import ChatSelectionMenu from './ui-components/chatSelectionMenu';
+import ChatSettingsScreen from './ui-components/chatSettingsScreen';
+import Header from './ui-components/header';
+import Message from './ui-components/message';
+import MessageInput from './ui-components/messageInput';
+import MessageList from './ui-components/messageList';
+import MessageListThread from './ui-components/messageListThread';
+import ModalChangeName from './ui-components/modalChangeName';
+import ModalManageMembers from './ui-components/modalManageMembers';
+import NewMessageGroup from './ui-components/newMessageGroup';
+import ProfileScreen from './ui-components/profileScreen';
+import RoomSelector from './ui-components/roomSelector';
+import TypingIndicator from './ui-components/typingIndicator';
+import UnreadIndicator from './ui-components/unreadIndicator';
+import UserMessage from './ui-components/userMessage';
+
+import searchImg from '@/public/icons/search.svg';
 
 export default function Page() {
   const searchParams = useSearchParams();

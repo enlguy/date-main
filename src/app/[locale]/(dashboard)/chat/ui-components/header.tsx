@@ -1,4 +1,5 @@
 import Image from 'next/image';
+
 import { roboto } from '../fonts';
 import { ToastType } from '../types';
 

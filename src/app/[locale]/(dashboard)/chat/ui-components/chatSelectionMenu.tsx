@@ -2,10 +2,9 @@
 
 'use client';
 
-import Image from 'next/image';
 import { useState } from 'react';
-import ChatMenuHeader from './chatMenuHeader';
-import ChatMenuItem from './chatMenuItem';
+import Image from 'next/image';
+
 import {
   ChatHeaderActionIcon,
   PresenceIcon,
@@ -13,6 +12,8 @@ import {
   useBreakpoints,
   useMediaQuery,
 } from '../types';
+import ChatMenuHeader from './chatMenuHeader';
+import ChatMenuItem from './chatMenuItem';
 
 export default function ChatSelectionMenu({
   chatSelectionMenuMinimized,
