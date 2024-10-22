@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 import { db } from '@vercel/postgres';
 
-import supabase from '../../../../utils/supabase';
+// import supabase from '../../../../utils/supabase';
 
 export async function POST(req: Request) {
   const client = await db.connect();
