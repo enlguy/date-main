@@ -4,9 +4,17 @@ import { db } from '@vercel/postgres';
 import bcrypt from 'bcrypt';
 import { SignJWT } from 'jose';
 
+// import * as Ably from 'ably';
+
 import { updateUserRaitingForLogin } from '@/utils/server/update-rating';
 
+require('dotenv').config();
+
 const JWT_SECRET = process.env.JWT_SECRET || 'default-secret-key';
+
+// const ably = new Ably.Rest({ key: 'O-MRkA.fjlx1A:*****' });
+
+// const tokenDetails = await ably.auth.requestToken({ clientId: 'client@example.com' });
 
 export async function POST(request: Request) {
   const { email, password, nickname } = await request.json();
@@ -50,9 +58,14 @@ export async function POST(request: Request) {
     const secretKey = new TextEncoder().encode(JWT_SECRET);
 
     token = await new SignJWT({ userId: user.id })
-      .setProtectedHeader({ alg: 'HS256' })
+      .setProtectedHeader({
+        alg: 'HS256',
+        // kid: '{{process.env.ABLY_API_KEY}}',
+        // 'x-ably-token': {tokenDetails.token},
+      })
       .setIssuedAt(iat)
       .setExpirationTime(exp)
+      // .setClaims({ 'x-ably-capability': '{"*":["*"]}' })
       .sign(secretKey);
   } catch (error) {
     console.error('Error creating JWT:', error);
