@@ -4,17 +4,13 @@ import { db } from '@vercel/postgres';
 import bcrypt from 'bcrypt';
 import { SignJWT } from 'jose';
 
-// import * as Ably from 'ably';
+import * as Ably from 'ably';
 
 import { updateUserRaitingForLogin } from '@/utils/server/update-rating';
 
 require('dotenv').config();
 
 const JWT_SECRET = process.env.JWT_SECRET || 'default-secret-key';
-
-// const ably = new Ably.Rest({ key: 'O-MRkA.fjlx1A:*****' });
-
-// const tokenDetails = await ably.auth.requestToken({ clientId: 'client@example.com' });
 
 export async function POST(request: Request) {
   const { email, password, nickname } = await request.json();
@@ -56,12 +52,16 @@ export async function POST(request: Request) {
     const iat = Math.floor(Date.now() / 1000);
     const exp = iat + 60 * 60; // Token expires in 1 hour
     const secretKey = new TextEncoder().encode(JWT_SECRET);
+    const ably = new Ably.Rest({ key: process.env.ABLY_API_KEY });
+
+    const tokenDetails = await ably.auth.requestToken({ clientId: user.id });
 
     token = await new SignJWT({ userId: user.id })
       .setProtectedHeader({
         alg: 'HS256',
+        typ: 'JWT',
         // kid: '{{process.env.ABLY_API_KEY}}',
-        // 'x-ably-token': {tokenDetails.token},
+        'x-ably-token': tokenDetails.token,
       })
       .setIssuedAt(iat)
       .setExpirationTime(exp)

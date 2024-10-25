@@ -192,6 +192,28 @@ const MenuList = ({
               </div>
             </Link>
           </li>
+          <li>
+            <Link
+              href={pathname !== '/activity/chat' ? `/activity/chat` : ''} // conditional href to prevent reloading of a page on clicking this link when user is already on this page
+              className={clsx(
+                `group mb-1 flex w-full items-center text-secondary smooth42transition`,
+                `hover:text-c42orange`
+              )}
+              onClick={onClick}
+              scroll={false}
+            >
+              <div
+                id="chosen-pointer"
+                className={clsx('ml-[-5px] mr-4 h-2 w-2 rounded-full', {
+                  'bg-secondary': pathname === '/activity/chat',
+                  'bg-transparent': pathname !== '/activity/chat',
+                })}
+              />
+              <div title={translate(`chat`)} className="max-w-[170px] truncate">
+                {translate(`chat`)}
+              </div>
+            </Link>
+          </li>
         </ul>
       </li>
     </ul>
