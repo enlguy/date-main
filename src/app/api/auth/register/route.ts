@@ -70,7 +70,7 @@ export async function POST(req: Request) {
       from: process.env.NEXT_PUBLIC_SUPPORT_EMAIL,
       to: email,
       subject: 'Please confirm your email',
-      html: `To start using Matcha, please confirm your email by clicking the following link: <a href="${confirmationUrl}">Confirm your email</a>.`,
+      html: `To start using Supaluva, please confirm your email by clicking the following link: <a href="${confirmationUrl}">Confirm your email</a>.`,
     });
 
     // If the email was sent successfully, insert the user into the database
