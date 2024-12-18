@@ -13,6 +13,8 @@
     "c:i": "npm run clean && npm install"
   },
   "dependencies": {
+    "@clerk/backend": "^0.37.0",
+    "@clerk/nextjs": "^6.5.0",
     "@emoji-mart/data": "^1.2.1",
     "@emoji-mart/react": "^1.1.1",
     "@pubnub/chat": "^0.8.2",

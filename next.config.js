@@ -17,6 +17,11 @@ const nextConfig = withNextIntl({
         destination: '/dashboard',
         permanent: true,
       },
+      {
+        source: '/chat',
+        destination: 'https://clerk-convex-chat.vercel.app/',
+        permanent: true,
+      },
     ];
   },
 });

@@ -1,38 +1,45 @@
 import { NextRequest, NextResponse } from 'next/server';
 import createMiddleware from 'next-intl/middleware';
+import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
 
-import { JWTPayload, jwtVerify } from 'jose';
+// import { JWTPayload, jwtVerify } from 'jose';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'secret-key';
+const isPublicRoute = createRouteMatcher(['/sign-in(.*)', '/sign-up(.*)', '/login']);
+
+// const JWT_SECRET = process.env.JWT_SECRET || 'secret-key';
 
 // List of supported locales and public pages
 const locales = ['en', 'fr', 'ru', 'es'];
 const publicPages = ['/', '/login', '/email-confirmation', '/password-reset'];
 
 // Middleware for internationalization (i18n)
-const intlMiddleware = createMiddleware({
-  locales,
-  localePrefix: 'always', // Prefix all URLs with locale
-  defaultLocale: 'en',
-});
+// const intlMiddleware = createMiddleware({
+//  locales,
+//  localePrefix: 'always', // Prefix all URLs with locale
+// defaultLocale: 'en',
+// });
 
-export async function middleware(req: NextRequest) {
+{
+  /* export async function middleware(req: NextRequest) {
   // Check if the page is public
   const publicPathnameRegex = RegExp(
     `^(/(${locales.join('|')}))?(${publicPages
       .flatMap((p) => (p === '/' ? ['', '/'] : p))
       .join('|')})/?$`,
     'i'
-  );
+  );   */
+}
 
-  const isPublicPage = publicPathnameRegex.test(req.nextUrl.pathname);
+export default clerkMiddleware();
 
-  // If the page is public, apply only i18n, not 'logged-in-?' middleware and return
-  if (isPublicPage) {
-    return intlMiddleware(req);
-  }
+// const isPublicPage = publicPathnameRegex.test(req.nextUrl.pathname);
 
-  // Check if the user is logged in
+// If the page is public, apply only i18n, not 'logged-in-?' middleware and return
+//if (isPublicPage) {
+// return intlMiddleware(req);
+//}
+
+/* // Check if the user is logged in
   const token = req.cookies.get('token')?.value;
 
   if (!token) {
@@ -53,12 +60,16 @@ export async function middleware(req: NextRequest) {
     console.error('JWT verification failed:', error);
     return NextResponse.redirect(new URL('/login', req.url));
   }
+  */
 
-  // Apply i18n middleware to the request and return
-  return intlMiddleware(req);
-}
+// Apply i18n middleware to the request and return
+// return intlMiddleware(req);
 
 export const config = {
-  // Check if the page is public or not based on the pathname and locale prefix (if any) in the URL path
-  matcher: ['/((?!api|_next|.*\\..*).*)'],
+  matcher: [
+    // Skip Next.js internals and all static files, unless found in search params
+    '/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
+    // Always run for API routes
+    '/(api|trpc)(.*)',
+  ],
 };

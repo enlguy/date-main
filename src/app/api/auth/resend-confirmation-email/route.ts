@@ -10,6 +10,7 @@ const transporter = nodemailer.createTransport({
     user: process.env.NEXT_PUBLIC_SUPPORT_EMAIL,
     pass: process.env.SUPPORT_EMAIL_PASSWORD,
   },
+  host: 'smtp.gmail.com',
 });
 
 export async function POST(req: Request) {

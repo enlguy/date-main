@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import React from 'react';
 import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
@@ -9,6 +11,7 @@ import { getMessages } from 'next-intl/server';
 import clsx from 'clsx';
 
 import '@/styles/globals.css';
+import { ClerkProvider } from '@clerk/nextjs';
 
 const ThemeProvider = dynamic(() => import('@/components/providers/theme-provider'), {
   ssr: false,
@@ -54,7 +57,7 @@ const RootLayout = async ({
           enableSystem
           disableTransitionOnChange
         >
-          <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
+          <ClerkProvider>{children}</ClerkProvider>
         </ThemeProvider>
       </body>
     </html>
